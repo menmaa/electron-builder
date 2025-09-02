@@ -6410,9 +6410,19 @@
     },
     "WindowsAzureSigningConfiguration": {
       "additionalProperties": {
-        "type": [
-          "null",
-          "string"
+        "anyOf": [
+          {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
         ]
       },
       "properties": {
@@ -6434,8 +6444,18 @@
           "type": "string"
         },
         "publisherName": {
-          "description": "[The publisher name](https://github.com/electron-userland/electron-builder/issues/1187#issuecomment-278972073), exactly as in your code signed certificate. Several names can be provided.",
-          "type": "string"
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "description": "[The publisher name](https://github.com/electron-userland/electron-builder/issues/1187#issuecomment-278972073), exactly as in your code signed certificate. Several names can be provided."
         },
         "timestampDigest": {
           "default": "SHA256",

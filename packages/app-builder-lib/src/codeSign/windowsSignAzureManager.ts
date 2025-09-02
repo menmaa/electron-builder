@@ -96,7 +96,8 @@ export class WindowsSignAzureManager implements SignManager {
   }
 
   computePublisherName(): Promise<string> {
-    return Promise.resolve(this.packager.platformSpecificBuildOptions.azureSignOptions!.publisherName)
+    const publisherName = this.packager.platformSpecificBuildOptions.azureSignOptions!.publisherName
+    return Promise.resolve(Array.isArray(publisherName) ? publisherName[0] : publisherName)
   }
   readonly cscInfo = new MemoLazy<WindowsConfiguration, FileCodeSigningInfo | CertificateFromStoreInfo | null>(
     () => this.packager.platformSpecificBuildOptions,
